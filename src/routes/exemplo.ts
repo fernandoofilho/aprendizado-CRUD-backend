@@ -1,5 +1,6 @@
 import { Router } from "express";
 
+
 // Rotas sem banco. Servem para ver o caminho de uma requisição:
 // método + URL + query string + corpo JSON.
 
@@ -22,6 +23,17 @@ router.get("/eco", (req, res) => {
     mensagem: typeof mensagem === "string" ? mensagem : "(vazio)",
   });
 });
+
+router.get("/hora",(req,res)=>{
+  const hora:String =  new Date().getHours().toString()
+  const minuto:String = new Date().getMinutes().toString()
+  const segundo:String = new Date().getSeconds().toString()
+  const milisegundo:String = new Date().getMilliseconds().toString()
+  const fullTime:string = hora + ":" + minuto + ":" + segundo + ":" + milisegundo
+  res.status(200).json({
+    "hora":fullTime
+  })
+})
 
 // POST /api/exemplo/eco
 // O JSON enviado pelo cliente chega em req.body
