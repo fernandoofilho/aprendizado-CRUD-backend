@@ -66,3 +66,8 @@ Erros de validação voltam `400` com `{ "erro": "..." }`. Registro inexistente 
 1. Acrescente o campo `prioridade` (número) no model, rode uma migration e mostre o campo no formulário do React.
 2. Crie `GET /api/exemplo/hora` devolvendo a hora do servidor.
 3. Faça `DELETE` devolver `204` sem corpo e ajuste o `fetch` do frontend.
+
+
+# ThunderClient
+
+baixe a extensão thunder client no seu vscode, vou passar instruções em seguida
