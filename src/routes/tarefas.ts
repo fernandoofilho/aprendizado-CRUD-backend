@@ -161,7 +161,7 @@ router.delete(
 
     await prisma.tarefa.delete({ where: { id } });
 
-    res.json({ ok: true });
+    res.status(204).end();
   }),
 );
 
