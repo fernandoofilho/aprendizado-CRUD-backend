@@ -13,6 +13,7 @@ model Tarefa {
   id        Int      @id @default(autoincrement())
   titulo    String
   descricao String?
+  prioridade Int @default(1)
   concluida Boolean  @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
