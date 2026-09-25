@@ -1,0 +1,24 @@
+# Sobe só o banco. A API roda na sua máquina com `npm run dev`,
+# para vocês lerem o código e verem o log de cada requisição.
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: aprendizado-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: crud_user
+      POSTGRES_PASSWORD: passwordEasy
+      POSTGRES_DB: aprendizado
+    ports:
+      - "5432:5432"
+    volumes:
+      - aprendizado_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U crud_user -d aprendizado"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  aprendizado_pg_data:

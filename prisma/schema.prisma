@@ -1,0 +1,22 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Cada campo vira uma coluna. `?` significa que o valor pode ser nulo.
+// `prisma generate` cria as funções prisma.tarefa.findMany, create, update e delete.
+model Tarefa {
+  id        Int      @id @default(autoincrement())
+  titulo    String
+  descricao String?
+  concluida Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([concluida])
+  @@map("tarefas")
+}
