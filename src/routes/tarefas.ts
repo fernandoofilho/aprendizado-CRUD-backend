@@ -10,6 +10,7 @@ const router = Router();
 
 type DadosTarefa = {
   titulo: string;
+  prioridade: number;
   descricao: string | null;
   concluida: boolean;
 };
@@ -35,6 +36,7 @@ function lerDados(body: unknown, res: Response): DadosTarefa | null {
 
   const dados = body as {
     titulo?: unknown;
+    prioridade?:unknown;
     descricao?: unknown;
     concluida?: unknown;
   };
@@ -63,8 +65,11 @@ function lerDados(body: unknown, res: Response): DadosTarefa | null {
       ? dados.descricao.trim()
       : null;
 
+    const prioridade = Number(dados.prioridade)
+
   return {
     titulo: dados.titulo.trim(),
+    prioridade,
     descricao,
     concluida: dados.concluida === true,
   };
@@ -81,7 +86,7 @@ router.get(
 
     const tarefas = await prisma.tarefa.findMany({
       where,
-      orderBy: { createdAt: "desc" },
+      orderBy: { prioridade:"asc" },
     });
 
     res.json(tarefas);
