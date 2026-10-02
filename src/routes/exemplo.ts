@@ -12,6 +12,14 @@ router.get("/ping", (_req, res) => {
   });
 });
 
+router.get("/hora", (_req, res) => {
+  const date = new Date().toISOString()
+  res.json({
+    mensagem: "hora do Servidor",
+    hora: date
+  });
+});
+
 // GET /api/exemplo/eco?mensagem=ola
 // Tudo depois do ? chega em req.query.
 router.get("/eco", (req, res) => {
