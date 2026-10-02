@@ -168,7 +168,8 @@ router.delete(
 
     await prisma.tarefa.delete({ where: { id } });
 
-    res.json({ ok: true });
+    // Retorna status HTTP 204 (No Content) sem nenhum corpo na resposta
+    res.status(204).end();
   }),
 );
 
