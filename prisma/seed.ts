@@ -8,16 +8,19 @@ const exemplos = [
     titulo: "Ler a rota GET /api/tarefas",
     descricao: "Veja prisma.tarefa.findMany em src/routes/tarefas.ts.",
     concluida: true,
+    prioridade: 0,
   },
   {
     titulo: "Criar uma tarefa pelo React",
     descricao: "O formulário faz um POST e o banco devolve o id.",
     concluida: false,
+    prioridade: 0,
   },
   {
     titulo: "Apagar esta tarefa",
     descricao: "O botão dispara um DELETE /api/tarefas/:id.",
     concluida: false,
+    prioridade: 0,
   },
 ];
 

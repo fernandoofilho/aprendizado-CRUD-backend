@@ -12,6 +12,7 @@ type DadosTarefa = {
   titulo: string;
   descricao: string | null;
   concluida: boolean;
+  prioridade: number;
 };
 
 function lerId(valor: string | string[], res: Response) {
@@ -37,6 +38,7 @@ function lerDados(body: unknown, res: Response): DadosTarefa | null {
     titulo?: unknown;
     descricao?: unknown;
     concluida?: unknown;
+    prioridade?: unknown;
   };
 
   if (typeof dados.titulo !== "string" || dados.titulo.trim() === "") {
@@ -57,16 +59,21 @@ function lerDados(body: unknown, res: Response): DadosTarefa | null {
     res.status(400).json({ erro: 'O campo "concluida" precisa ser true ou false.' });
     return null;
   }
+  if (dados.prioridade !== undefined && typeof dados.prioridade !== "number") {
+    res.status(400).json({ erro: 'O campo "prioridade" precisa ser um numero inteiro.' });
+    return null;
+  }
 
   const descricao =
     typeof dados.descricao === "string" && dados.descricao.trim() !== ""
       ? dados.descricao.trim()
       : null;
-
+    
   return {
     titulo: dados.titulo.trim(),
     descricao,
     concluida: dados.concluida === true,
+    prioridade: 0,
   };
 }
 
